@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Put Information</title>
+    <h3> Welcome to Save Information</h3>
+</head>
+<body>
+<form th:action="@{/employeeSave}" th:object="${formEmployee}" method="post">
+   Name: <input type="text" th:field="*{name}" /> </br>
+   AGE: <input type="text" th:field="*{age}" /> </br>
+<!--   Department: <input type="text" th:field="*{dept}" />-->
+
+   Department:
+    <select th:field="*{dept}">
+
+        <th:block th:each="department : ${departmentList}">
+        <option th:value="${department}" th:text="${department}"> </option>
+        </th:block>
+    </select>
+    </br>
+
+   Gender:
+    <th:block th:each="sex : ${genderList}">
+        <input type="radio" th:field="*{gender}" th:value="sex">
+        <label th:text="${sex}"></label>
+    </th:block>
+    </br>
+    <button type="submit">Save Employee</button>
+
+</form>
+
+</body>
+</html>
